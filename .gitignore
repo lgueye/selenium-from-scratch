@@ -1,0 +1,15 @@
+# elasticsearch
+data/
+
+# eclipse
+.project
+.classpath
+.settings
+target/
+
+# intellij
+.log
+*.iml
+*.ipr
+*.iws
+.idea/
