@@ -162,6 +162,7 @@
 		</repository>
 	</repositories>
 	<build>
+        <finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -198,11 +199,46 @@
 					<junitArtifactName>junit:junit</junitArtifactName>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>tomcat-maven-plugin</artifactId>
-				<version>1.0-beta-1</version>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>org.codehaus.mojo</groupId>-->
+				<!--<artifactId>tomcat-maven-plugin</artifactId>-->
+				<!--<version>1.0-beta-1</version>-->
+			<!--</plugin>-->
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.26</version>
+                <configuration>
+                    <contextPath>${project.build.finalName}</contextPath>
+                    <connectors>
+                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                            <port>9090</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <stopKey>foo</stopKey>
+                    <stopPort>9180</stopPort>
+                    <webApp>${project.build.directory}/${project.build.finalName}.war</webApp>
+                    <daemon>true</daemon>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <goals>
+                            <goal>deploy-war</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 </project>
