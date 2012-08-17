@@ -238,12 +238,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <junitArtifactName>junit:junit</junitArtifactName>
                     <excludes>
-                        <!-- Exclude integration tests within (unit) test phase. -->
-                        <exclude>**/*IntegrationTest.java</exclude>
-                        <encoding>UTF-8</encoding>
+                        <exclude>%regex[.*AcceptanceTest.*]</exclude>
                     </excludes>
+                    <junitArtifactName>junit:junit</junitArtifactName>
                 </configuration>
             </plugin>
             <plugin>
@@ -252,14 +250,21 @@
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
                     <includes>
-                        <include>**/*IntegrationTest.java</include>
+                        <include>%regex[.*AcceptanceTest.*]</include>
                     </includes>
                     <encoding>UTF-8</encoding>
                 </configuration>
                 <executions>
                     <execution>
+                        <id>integration-test</id>
                         <goals>
                             <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <goals>
+                            <goal>verify</goal>
                         </goals>
                     </execution>
                 </executions>

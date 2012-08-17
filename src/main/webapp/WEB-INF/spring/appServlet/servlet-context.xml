@@ -10,7 +10,7 @@
 		infrastructure -->
 
 	
-	<context:component-scan base-package="org.diveintojee.poc" />
+	<context:component-scan base-package="org.diveintojee.poc.web" />
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
