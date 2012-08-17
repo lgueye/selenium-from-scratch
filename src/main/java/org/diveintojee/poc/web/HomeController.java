@@ -1,11 +1,11 @@
-package org.diveintojee.poc.controller;
+package org.diveintojee.poc.web;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
 
-import org.diveintojee.poc.form.MessageForm;
+import org.diveintojee.poc.domain.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
 
-	private static List<MessageForm> messageFormRepository = new ArrayList<MessageForm>();
+	private static List<Message> messageFormRepository = new ArrayList<Message>();
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -34,14 +34,14 @@ public class HomeController {
 	public String homeForm(Model model) {
 		logger.info("Welcome home! from Thymeleaf");
 
-		model.addAttribute("messageInfo", new MessageForm());
+		model.addAttribute("messageInfo", new Message());
 
 		return "index";
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String create(
-			@Valid @ModelAttribute("messageInfo") MessageForm messageForm,
+			@Valid @ModelAttribute("messageInfo") Message messageForm,
 			BindingResult result) {
 
 		if (result.hasErrors()) {
@@ -64,7 +64,7 @@ public class HomeController {
 
 	}
 
-	private void addNewMessage(MessageForm messageForm) {
+	private void addNewMessage(Message messageForm) {
 		messageFormRepository.add(messageForm);
 	}
 

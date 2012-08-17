@@ -1,13 +1,13 @@
-package org.diveintojee.poc.form;
+package org.diveintojee.poc.domain;
 
-import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.Size;
 
-public class MessageForm {
+public class Message {
 	
 	private String name;
 	private String email;
 	
-	@Length(min=9)
+	@Size(min=9)
 	private String phone;
 	private String website;
 	private String message;
@@ -47,7 +47,7 @@ public class MessageForm {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("MessageForm [name=").append(name).append(", email=")
+		builder.append("Message [name=").append(name).append(", email=")
 				.append(email).append(", phone=").append(phone)
 				.append(", website=").append(website).append(", message=")
 				.append(message).append("]");
@@ -68,7 +68,7 @@ public class MessageForm {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MessageForm other = (MessageForm) obj;
+		Message other = (Message) obj;
 		if (email == null) {
 			if (other.email != null)
 				return false;
