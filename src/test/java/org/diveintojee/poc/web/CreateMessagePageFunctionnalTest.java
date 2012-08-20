@@ -110,7 +110,7 @@ public class CreateMessagePageFunctionnalTest {
     final String listMessagesPageTitle = "dive into jee :: list messages";
     assertTrue(driver.getTitle().equalsIgnoreCase(listMessagesPageTitle));
   }
-
+ 
   private void sendCreateMessageForm() {
     WebElement form = driver.findElement(By.id("create-message-form"));
     assertNotNull(form);
