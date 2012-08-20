@@ -7,7 +7,7 @@ public class Message {
 	private String name;
 	private String email;
 	
-	@Size(min=9)
+	@Size(min=9, message = "{valid.phone.required}")
 	private String phone;
 	private String website;
 	private String message;

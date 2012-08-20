@@ -23,27 +23,24 @@
 	<!-- Internationalization support -->
 
 	<beans:bean id="localeResolver"
-		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-		<beans:property name="defaultLocale" value="en_US" />
+		class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"/>
+
+	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>classpath:messages</beans:value>
+			</beans:list>
+		</beans:property>
+		<!--<beans:property name="basename" value="locale/messages" />-->
+        <beans:property name="defaultEncoding" value="UTF-8" />
 	</beans:bean>
- 
-	<beans:bean id="localeChangeInterceptor"
-		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-		<beans:property name="paramName" value="language" />
-	</beans:bean>
- 
-	<beans:bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" >
-		<beans:property name="interceptors">
-		   <beans:list>
-			<beans:ref bean="localeChangeInterceptor" />
-		   </beans:list>
+
+	<beans:bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<beans:property name="validationMessageSource">
+			<beans:ref bean="messageSource" />
 		</beans:property>
 	</beans:bean>
-
-	<beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<beans:property name="basename" value="locale/messages" />
-	</beans:bean>
-
 	<!-- **************************************************************** -->
 	<!-- THYMELEAF-SPECIFIC ARTIFACTS -->
 	<!-- TemplateResolver <- TemplateEngine <- ViewResolver -->

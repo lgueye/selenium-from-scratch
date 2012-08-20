@@ -23,7 +23,7 @@
     <form id="create-message-form" action="#" th:object="${messageInfo}" th:action="@{/insert}"
           method="post">
 
-        <h1>Get In Touch With Us ...</h1>
+        <h1 th:text="#{form.title}">Get In Touch With Us ...</h1>
 
         <fieldset id="user-details">
 

@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -43,6 +44,34 @@ public class CreateMessagePageFunctionnalTest {
 
   }
 
+  @Test
+  public void createMessageShouldFailAndDisplayErrorMessage() {
+    displayCreateMessagePage();
+    Message message = TestFixtures.validMessage();
+    String invalidPhone = "06060606";
+    message.setPhone(invalidPhone);
+    fillCreateMessageForm(message);
+    sendCreateMessageForm();
+    assertFormSubmissionOutcomeIsCreateMessagePage();
+    assertCreateMessagePageContainsExpectedErrorMessage(
+        "Un numéro de téléphone valide comporte au moins 9 chiffres.");
+  }
+
+  private void assertCreateMessagePageContainsExpectedErrorMessage(String errorMessage) {
+    String errorMessageXpathExpression = "//div[@id='errors']//li[text()='" + errorMessage + "']";
+    WebElement errorMessageNode = driver.findElement(By.xpath(errorMessageXpathExpression));
+    assertNotNull(errorMessageNode);
+  }
+
+  private void assertFormSubmissionOutcomeIsCreateMessagePage() {
+    assertCurrentPageIsCreateMessagePage();
+  }
+
+  private void assertCurrentPageIsCreateMessagePage() {
+    String createMessagePageTitle = "dive into jee :: create message";
+    assertTrue(driver.getTitle().equalsIgnoreCase(createMessagePageTitle));
+  }
+
   private void assertListMessagesPageContainsExpectedName(String name) {
     String nameXpathExpression = "//table[@id='display-data']//td[text()='" + name + "']";
     WebElement nameNode = driver.findElement(By.xpath(nameXpathExpression));
@@ -74,6 +103,10 @@ public class CreateMessagePageFunctionnalTest {
   }
 
   private void assertFormSubmissionOutcomeIsListMessagesPage() {
+    assertCurrentPageIsListMessages();
+  }
+
+  private void assertCurrentPageIsListMessages() {
     final String listMessagesPageTitle = "dive into jee :: list messages";
     assertTrue(driver.getTitle().equalsIgnoreCase(listMessagesPageTitle));
   }
@@ -104,8 +137,7 @@ public class CreateMessagePageFunctionnalTest {
 
   private void displayCreateMessagePage() {
     driver.get(urlUnderTest);
-    String createMessagePageTitle = "dive into jee :: create message";
-    assertTrue(driver.getTitle().equalsIgnoreCase(createMessagePageTitle));
+    assertCurrentPageIsCreateMessagePage();
   }
 
 }
