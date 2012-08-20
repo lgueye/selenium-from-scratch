@@ -6,7 +6,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<title></title>
+<title>Dive into jee :: list messages</title>
 <meta name="description" content="HTML 5 CSS 3 Spring Form" />
 
 
@@ -28,6 +28,7 @@
 					<th th:text="#{theader.email}"></th>
 					<th th:text="#{theader.phone}"></th>
 					<th th:text="#{theader.website}"></th>
+					<th th:text="#{theader.message}"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,6 +38,7 @@
 					<td th:text="${msg.email}">my@email.com</td>
 					<td th:text="${msg.phone}">9999</td>
 					<td th:text="${msg.website}">http://mysite.com</td>
+					<td th:text="${msg.message}">my message</td>
 				</tr>
 			</tbody>
 		</table>

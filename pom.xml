@@ -239,7 +239,7 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <excludes>
-                        <exclude>%regex[.*AcceptanceTest.*]</exclude>
+                        <exclude>%regex[.*FunctionnalTest.*]</exclude>
                     </excludes>
                     <junitArtifactName>junit:junit</junitArtifactName>
                 </configuration>
@@ -250,7 +250,7 @@
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
                     <includes>
-                        <include>%regex[.*AcceptanceTest.*]</include>
+                        <include>%regex[.*FunctionnalTest.*]</include>
                     </includes>
                     <encoding>UTF-8</encoding>
                 </configuration>
