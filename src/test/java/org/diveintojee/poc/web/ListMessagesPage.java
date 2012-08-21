@@ -24,7 +24,7 @@ public class ListMessagesPage extends Page {
 
   @Override
   public void visitInternal() {
-    getDriver().get("http://localhost:9090/selenium-from-scratch/list");
+    getDriver().get(BASE_URL +  "/list");
   }
 
   public void assertContainsExpectedName(String name) {

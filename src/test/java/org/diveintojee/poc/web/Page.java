@@ -9,6 +9,8 @@ import static org.junit.Assert.assertTrue;
  */
 public abstract class Page {
 
+  public static final String BASE_URL = "http://localhost:9090/selenium-from-scratch";
+
   private WebDriver driver;
 
   public Page(WebDriver driver) {
