@@ -4,9 +4,6 @@ import org.openqa.selenium.WebDriver;
 
 import static org.junit.Assert.assertTrue;
 
-/**
- * User: lgueye Date: 21/08/12 Time: 14:21
- */
 public abstract class Page {
 
   public static final String BASE_URL = "http://localhost:9090/selenium-from-scratch";

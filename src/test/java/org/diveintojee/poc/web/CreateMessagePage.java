@@ -10,16 +10,14 @@ import org.openqa.selenium.support.PageFactory;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-/**
- * User: lgueye Date: 21/08/12 Time: 14:04
- */
 public class CreateMessagePage extends Page {
 
   public CreateMessagePage(WebDriver driver) {
     super(driver);
   }
 
-  @FindBy(id="create-message-form") WebElement form;
+  @FindBy(id = "create-message-form")
+  WebElement form;
 
   @Override
   public void visitInternal() {
@@ -53,15 +51,20 @@ public class CreateMessagePage extends Page {
     assertNotNull(form);
     form.submit();
     Page page;
-    if (failureExpected) page = PageFactory.initElements(getDriver(), CreateMessagePage.class);
-    else page = PageFactory.initElements(getDriver(), ListMessagesPage.class);
+    if (failureExpected) {
+      page = PageFactory.initElements(getDriver(), CreateMessagePage.class);
+    } else {
+      page = PageFactory.initElements(getDriver(), ListMessagesPage.class);
+    }
     page.assertIdentity();
     return page;
   }
 
 
   public void assertContainsExpectedErrorMessage(String expectedErrorMessage) {
-    String errorMessageXpathExpression = "//div[@id='errors']//li[text()='" + expectedErrorMessage + "']";
+    String
+        errorMessageXpathExpression =
+        "//div[@id='errors']//li[text()='" + expectedErrorMessage + "']";
     WebElement errorMessageNode = getDriver().findElement(By.xpath(errorMessageXpathExpression));
     assertNotNull(errorMessageNode);
   }

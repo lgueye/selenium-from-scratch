@@ -7,9 +7,6 @@ import org.openqa.selenium.WebElement;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-/**
- * User: lgueye Date: 21/08/12 Time: 14:25
- */
 public class ListMessagesPage extends Page {
 
   public ListMessagesPage(WebDriver driver) {
