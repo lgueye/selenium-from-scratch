@@ -4,6 +4,8 @@ import org.diveintojee.poc.domain.Message;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -16,6 +18,8 @@ public class CreateMessagePage extends Page {
   public CreateMessagePage(WebDriver driver) {
     super(driver);
   }
+
+  @FindBy(id="create-message-form") WebElement form;
 
   @Override
   public void visitInternal() {
@@ -46,12 +50,11 @@ public class CreateMessagePage extends Page {
   }
 
   public Page sendCreateMessageForm(boolean failureExpected) {
-    WebElement form = getDriver().findElement(By.id("create-message-form"));
     assertNotNull(form);
     form.submit();
-    Page page = null;
-    if (failureExpected) page = new CreateMessagePage(getDriver());
-    else page = new ListMessagesPage(getDriver());
+    Page page;
+    if (failureExpected) page = PageFactory.initElements(getDriver(), CreateMessagePage.class);
+    else page = PageFactory.initElements(getDriver(), ListMessagesPage.class);
     page.assertIdentity();
     return page;
   }

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public class CreateMessagePageFunctionnalTest {
 
@@ -25,7 +26,7 @@ public class CreateMessagePageFunctionnalTest {
 
   @Test
   public void createMessageShouldSucceedAndListMessages() {
-    CreateMessagePage createMessagePage = new CreateMessagePage(driver);
+    CreateMessagePage createMessagePage = PageFactory.initElements(driver, CreateMessagePage.class);
     createMessagePage.visit();
     Message message = TestFixtures.validMessage();
     createMessagePage.fillCreateMessageForm(message);
@@ -42,7 +43,7 @@ public class CreateMessagePageFunctionnalTest {
 
   @Test
   public void createMessageShouldFailAndDisplayErrorMessage() {
-    CreateMessagePage createMessagePage = new CreateMessagePage(driver);
+    CreateMessagePage createMessagePage = PageFactory.initElements(driver, CreateMessagePage.class);
     createMessagePage.visit();
     Message message = TestFixtures.validMessage();
     String invalidPhone = "06060606";
