@@ -4,14 +4,8 @@ import org.diveintojee.poc.domain.Message;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class CreateMessagePageFunctionnalTest {
 
@@ -35,7 +29,9 @@ public class CreateMessagePageFunctionnalTest {
     createMessagePage.get();
     Message message = TestFixtures.validMessage();
     createMessagePage.fillCreateMessageForm(message);
-    ListMessagesPage listMessagesPage = (ListMessagesPage)createMessagePage.sendCreateMessageForm(false);
+    ListMessagesPage
+        listMessagesPage =
+        (ListMessagesPage) createMessagePage.sendCreateMessageForm(false);
     listMessagesPage.assertContainsExpectedName(message.getName());
     listMessagesPage.assertContainsExpectedEmail(message.getEmail());
     listMessagesPage.assertContainsExpectedPhone(message.getPhone());
@@ -51,7 +47,7 @@ public class CreateMessagePageFunctionnalTest {
     Message message = TestFixtures.validMessage();
     String invalidPhone = "06060606";
     message.setPhone(invalidPhone);
-    CreateMessagePage outcome = (CreateMessagePage)createMessagePage.sendCreateMessageForm(true);
+    CreateMessagePage outcome = (CreateMessagePage) createMessagePage.sendCreateMessageForm(true);
     outcome.assertContainsExpectedErrorMessage(
         "Un numéro de téléphone valide comporte au moins 9 chiffres.");
   }
