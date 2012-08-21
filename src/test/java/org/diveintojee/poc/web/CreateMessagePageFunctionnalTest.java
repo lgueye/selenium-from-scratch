@@ -26,7 +26,7 @@ public class CreateMessagePageFunctionnalTest {
   @Test
   public void createMessageShouldSucceedAndListMessages() {
     CreateMessagePage createMessagePage = new CreateMessagePage(driver);
-    createMessagePage.get();
+    createMessagePage.visit();
     Message message = TestFixtures.validMessage();
     createMessagePage.fillCreateMessageForm(message);
     ListMessagesPage
@@ -43,7 +43,7 @@ public class CreateMessagePageFunctionnalTest {
   @Test
   public void createMessageShouldFailAndDisplayErrorMessage() {
     CreateMessagePage createMessagePage = new CreateMessagePage(driver);
-    createMessagePage.get();
+    createMessagePage.visit();
     Message message = TestFixtures.validMessage();
     String invalidPhone = "06060606";
     message.setPhone(invalidPhone);

@@ -18,7 +18,7 @@ public class CreateMessagePage extends Page {
   }
 
   @Override
-  public void getInternal() {
+  public void visitInternal() {
     getDriver().get("http://localhost:9090/selenium-from-scratch/");
   }
 

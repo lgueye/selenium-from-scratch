@@ -21,9 +21,11 @@ public abstract class Page {
 
   protected abstract void assertIdentity();
 
-  public void get() {
-    getInternal();
+  public void visit() {
+    visitInternal();
     assertIdentity();
   }
-  protected abstract void getInternal();
+
+  protected abstract void visitInternal();
+  
 }
