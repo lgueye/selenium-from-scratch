@@ -50,8 +50,13 @@ public class CreateMessagePage extends Page {
     assertNotNull(form);
     form.submit();
     Page page = null;
+<<<<<<< HEAD
     if (failureExpected) page = new CreateMessagePage(getDriver());
     else page = new ListMessagesPage(getDriver());
+=======
+    if (failureExpected) page = new ListMessagesPage(getDriver());
+    else page = new CreateMessagePage(getDriver());
+>>>>>>> 09a942df6090f0129ccc7b10a4bbe36f2c1e504f
     page.assertIdentity();
     return page;
   }
