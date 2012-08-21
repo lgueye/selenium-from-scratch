@@ -25,6 +25,7 @@ public class CreateMessagePage extends Page {
   }
 
   public void assertIdentity() {
+    assertNotNull(form);
     String createMessagePageTitle = "dive into jee :: create message";
     assertTrue(getDriver().getTitle().equalsIgnoreCase(createMessagePageTitle));
   }
@@ -48,7 +49,6 @@ public class CreateMessagePage extends Page {
   }
 
   public Page sendCreateMessageForm(boolean failureExpected) {
-    assertNotNull(form);
     form.submit();
     Page page;
     if (failureExpected) {

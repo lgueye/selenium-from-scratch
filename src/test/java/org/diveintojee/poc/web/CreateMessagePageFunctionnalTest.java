@@ -10,8 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CreateMessagePageFunctionnalTest {
 
-  private String urlUnderTest = "http://localhost:9090/selenium-from-scratch/";
-
   private WebDriver driver;
 
   @Before
