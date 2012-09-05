@@ -14,12 +14,8 @@ public class CreateMessagePageFunctionnalTest {
 
   @Before
   public void before() throws Exception {
+    if (driver != null) driver.quit();
     driver = new FirefoxDriver();
-  }
-
-  @After
-  public void after() throws Exception {
-    driver.quit();
   }
 
   @Test
